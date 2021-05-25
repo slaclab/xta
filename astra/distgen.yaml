@@ -5,7 +5,7 @@ start:
   type: cathode
   MTE:
     units: meV
-    value: 330 
+    value: 500 
     
 total_charge:
   units: pC
@@ -24,6 +24,6 @@ t_dist:
     value: 0
   sigma_t:
     units: ps
-    value: 8.5
+    value: 0.85
   n_sigma_cutoff: 3
   
