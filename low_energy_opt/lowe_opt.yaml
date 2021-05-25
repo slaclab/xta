@@ -22,8 +22,8 @@ simulation:
     archive_path: run1/h5files
 
 vocs:
-  name: lcls2_baseline_gauss
-  description: LCLS-II baseline gaussian
+  name: xta_low_energy 
+  description: XTA gun low energy
   simulation: astra_with_distgen
   templates:
       astra_input_file:   /gpfs/slac/staas/fs1/g/accelerator_modeling/nneveu/xta/astra/xta.in
