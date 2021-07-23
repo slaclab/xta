@@ -22,17 +22,17 @@ dirname = os.path.dirname(__file__)
 # Create values for 1 CM.
 CM1 = Measure()
 CM1.pixels= 25                      # number of pixels to 1CM
-CM1.inches = 0.393701               # number of inches in 1CM
+CM1.inches = 0.393701                   # number of inches in 1CM
 CM1.dirname = dirname + '/1CM/'     # directory to store 1CM files
 
 CM20 = Measure()
 CM20.pixels = 500                   # number of pixels to 20CM
-CM20.inches = 7.87402               # number of inches in 20CM
+CM20.inches = 7.87402                   # number of inches in 20CM
 CM20.dirname = dirname +'/20CM/'    # directory to store 20CM files 
 
 CM40 = Measure()
 CM40.pixels = 1000                  # number of pixels to 40CM
-CM40.inches = 15.748                # number of inches to 40CM
+CM40.inches = 15.748                  # number of inches to 40CM
 CM40.dirname = dirname + '/40CM/'   # directory to store 40CM files
 
 # Bins are similar to resolution, too little and the image is pixelated, too many and the image is washed out
@@ -106,7 +106,7 @@ for x in fileNames:
     figg=plt.gcf()
     # Set extent to make the image as big as possible with no borders
     extent = figg.get_window_extent().transformed(figg.dpi_scale_trans.inverted())
-    figg.savefig(CM1.dirname + filename + '.1cm.png', bbox_inches=extent)
+    figg.savefig(CM1.dirname + filename + '.1cm.png', bbox_inches=extent, dpi=63.499965710018516590001041399438)
 
     #20cm------------------------------------------------------------------------------------------------------
     height = CM20.inches            # Height in inches
@@ -123,7 +123,7 @@ for x in fileNames:
     figg=plt.gcf()
     # Set extent to make the image as big as possible with no borders
     extent = figg.get_window_extent().transformed(figg.dpi_scale_trans.inverted())
-    figg.savefig(CM20.dirname + filename + '.20cm.png', bbox_inches=extent)
+    figg.savefig(CM20.dirname + filename + '.20cm.png', bbox_inches=extent, dpi=63.499965710018516590001041399438)
 
     #40cm-------------------------------------------------------------------------------------------------------
     height = CM40.inches            # Height in inches
@@ -140,7 +140,7 @@ for x in fileNames:
     figg=plt.gcf()
     # Set extent to make the image as big as possible with no borders
     extent = figg.get_window_extent().transformed(figg.dpi_scale_trans.inverted())
-    figg.savefig(CM40.dirname + filename + '.40cm.png', bbox_inches=extent)
+    figg.savefig(CM40.dirname + filename + '.40cm.png', bbox_inches=extent, dpi=63.500127000254000508001016002032)
 
 #-------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------
