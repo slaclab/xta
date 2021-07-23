@@ -12,8 +12,12 @@ from numpy import asarray
 # Get the parent directory
 dirname = os.path.dirname(__file__)
 testList = ['jfif.slacerman.20cm.png','jpg.blackhol.20cm.png','png.slac.20cm.png','jpeg.seaturtle.20cm.png','tiff.lab.20cm.png','png.test.20cm.png']
-# Create a dictionary for sizes
+# Create a dictionary for sizes I set it up like this so you could do Image.width() as a dictionary key.
+# That way at a later date it could be used to more easily import files of any of the three variant sizes
 sizes = {25:'1cm', 500:'20cm', 1000:'40cm'}
+
+# currSize will determine the expected input and output sizes of the files. For example, setting this to 500 
+# will automatically pull and save files to the /20CM/ directory with the .20cm. tag in the filename.
 currSize = 500
 
 # FIRST PROCESS ANY MASKS----------------------------------------------------------------------------------------------------------------------------
@@ -85,11 +89,13 @@ for x in testList:
     test5 = ImageChops.darker(img1, img2)
     test5.save(dirname + '/Analysis/' + sizes[currSize].upper() + '/' + fName + '.' + sizes[currSize] + '.darker.png')
 # TEST6:DIFFERENCE-----------------------------------------------------------------------------------------------------------------------------------
+    # Difference Analysis requires the file to be in "RGB" mode.
     ttImg1 = img1.convert("RGB")
     ttImg2 = img2.convert("RGB")
     test6 = ImageChops.difference(ttImg1, ttImg2)
     test6.save(dirname + '/Analysis/' + sizes[currSize].upper() + '/' + fName + '.' + sizes[currSize] + '.difference.png')
 # TEST7:INVERT---------------------------------------------------------------------------------------------------------------------------------------
+    # Inverse Analysis requires the file to be in "RGB" mode.
     test7 = ImageChops.invert(ttImg1)
     test7.save(dirname + '/Analysis/' + sizes[currSize].upper() + '/' + fName + '.' + sizes[currSize] + '.invert.png')
 # TEST8:LIGHTER--------------------------------------------------------------------------------------------------------------------------------------
@@ -125,10 +131,12 @@ for x in testList:
     test16 = ImageChops.screen(img1, img2)
     test16.save(dirname + '/Analysis/' + sizes[currSize].upper() + '/' + fName + '.' + sizes[currSize] + '.screen.png')
 # TEST17:SUBTRACT------------------------------------------------------------------------------------------------------------------------------------
+    # Subtractive Analysis requires the file to be in "RGB" mode.
     tScale = 1.0
     test17 = ImageChops.subtract(ttImg1, ttImg2, scale = tScale)
     test17.save(dirname + '/Analysis/' + sizes[currSize].upper() + '/' + fName + '.' + sizes[currSize] + '.subtract.png')
 # TEST18:SUBTRACT_MODULO-----------------------------------------------------------------------------------------------------------------------------
+    # Subtractive Analysis requires the file to be in "RGB" mode.
     test18 = ImageChops.subtract_modulo(ttImg1, ttImg2)
     test18.save(dirname + '/Analysis/' + sizes[currSize].upper() + '/' + fName + '.' + sizes[currSize] + '.subtract_modulo.png')
 # ---------------------------------------------------------------------------------------------------------------------------------------------------
