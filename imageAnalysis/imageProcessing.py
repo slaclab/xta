@@ -40,6 +40,8 @@ numBinsSmall = 200                  # Small Bin
 numBinsCustom = 250                 # Custom Value 
 numBinsMedium = 500                 # Medium Bin 
 numBinsLarge = 800                  # Large Bin 
+# Edit this to change the Bin count without having to go through every line and change it.
+tBins = numBinsMedium
 
 dirnameOriginal = dirname + '/Original/'    # directory pointing to the Original file location, 'xta/imageAnalysis/Original/'
 dirnameYaml = dirname + '/yaml/'            # directory pointing to the yaml file location, 'xta/imageAnalysis/yaml/'                 
@@ -97,7 +99,7 @@ for x in fileNames:
     width = height*aspect
 
     plt.figure(figsize=(width, height))
-    figg=plt.hist2d(pltx,plty, bins = numBinsLarge)                 # Change bins here if needed
+    figg=plt.hist2d(pltx,plty, bins = tBins)                 # Change bins here if needed
 
     plt.subplots_adjust(bottom=0, top=1, left=0, right=1)
     # Remove axis
@@ -114,7 +116,7 @@ for x in fileNames:
     width = height*aspect
 
     plt.figure(figsize=(width, height))
-    figg=plt.hist2d(pltx,plty, bins = numBinsLarge)                 # Change bins here if needed
+    figg=plt.hist2d(pltx,plty, bins = tBins)                 # Change bins here if needed
 
     plt.subplots_adjust(bottom=0, top=1, left=0, right=1)
     # Remove axis
@@ -131,7 +133,7 @@ for x in fileNames:
     width = height*aspect
 
     plt.figure(figsize=(width, height))
-    figg=plt.hist2d(pltx,plty, bins = numBinsLarge)                 # Change bins here if needed
+    figg=plt.hist2d(pltx,plty, bins = tBins)                 # Change bins here if needed
 
     plt.subplots_adjust(bottom=0, top=1, left=0, right=1)
     # Remove axis
