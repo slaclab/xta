@@ -42,7 +42,8 @@ numBinsMedium = 500                 # Medium Bin
 numBinsLarge = 800                  # Large Bin 
 # Edit this to change the Bin count without having to go through every line and change it.
 tBins = numBinsMedium
-
+# Edit this to change the number of particles coded into the .yaml file.
+n_particles= 1000000
 dirnameOriginal = dirname + '/Original/'    # directory pointing to the Original file location, 'xta/imageAnalysis/Original/'
 dirnameYaml = dirname + '/yaml/'            # directory pointing to the yaml file location, 'xta/imageAnalysis/yaml/'                 
 
@@ -55,7 +56,7 @@ for x in fileNames:
     im = Image.open(dirnameOriginal + filename)
     fileType = im.format
     # Create the dictionary information to insert into the .yaml file
-    tempDictionary = {'n_particle': 1000000,
+    tempDictionary = {'n_particle': n_particles,
                 'output': {'file': 'rad.uniform.out.txt', 'type': 'gpt'},
                 'random_type': 'hammersley', 
                 'start': {'MTE': {'units': 'meV', 'value': 150}, 'type': 'cathode'},
