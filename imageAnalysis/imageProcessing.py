@@ -6,11 +6,12 @@ import os
 import h5py
 import numpy as np
 from PIL import Image
+from pdf2image import convert_from_path
 
 # Edit the list of filenames here. Filenames must be 2 characters in length or longer. 
 # Valid extensions are .png , .jpg, .jfif, .jpeg, .tiff
 # Pixel width should be 2.5mm(optimal)-5mm(minimal), to conform to the standards 
-fileNames = ['jfif.slacerman.jfif','jpg.blackhole.jpg','png.slac.png','jpeg.seaturtle.jpeg','tiff.lab.tiff','png.test.png']
+fileNames = ['edit1-20.pdf' , 'edit1-21.pdf' , 'jfif.slacerman.jfif','jpg.blackhole.jpg','png.slac.png','jpeg.seaturtle.jpeg','tiff.lab.tiff','png.test.png']
 
 # A class to hold constant values
 class Measure(object): 
@@ -18,6 +19,15 @@ class Measure(object):
 
 # Get the parent directory
 dirname = os.path.dirname(__file__)
+count = 0
+for x in fileNames:
+    if x[len(x)-3] == 'p' and x[len(x)-2] == 'd' and x[len(x)-1] == 'f':
+        pdf = convert_from_path(dirname +'/Original/'+ x)
+        print(pdf)
+        for q in range(len(pdf)):
+            pdf[q].save(dirname + '/Original/' + 'png.' + x + '.'+ str((q+1)) + '.png','PNG')
+        fileNames[count] = 'png.' + x + '.' + str((q + 1)) + '.png'  
+    count+=1
 
 # Bins are similar to resolution, too little and the image is pixelated, too many and the image is washed out
 # There are optimization functions for 1D histograms but not 2D.
