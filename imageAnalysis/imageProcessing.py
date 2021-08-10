@@ -11,7 +11,7 @@ from pdf2image import convert_from_path
 # Edit the list of filenames here. Filenames must be 2 characters in length or longer. 
 # Valid extensions are .png , .jpg, .jfif, .jpeg, .tiff
 # Pixel width should be 2.5mm(optimal)-5mm(minimal), to conform to the standards 
-fileNames = ['edit1-20.pdf' , 'edit1-21.pdf' , 'jfif.slacerman.jfif','jpg.blackhole.jpg','png.slac.png','jpeg.seaturtle.jpeg','tiff.lab.tiff','png.test.png']
+fileNames = ['jfif.slacerman.jfif','jpg.blackhole.jpg','png.slac.png','jpeg.seaturtle.jpeg','tiff.lab.tiff','png.test.png']
 
 # A class to hold constant values
 class Measure(object): 
@@ -32,11 +32,11 @@ for x in fileNames:
 # Bins are similar to resolution, too little and the image is pixelated, too many and the image is washed out
 # There are optimization functions for 1D histograms but not 2D.
 numBinsSmall = 200                  # Small Bin 
-numBinsCustom = 250                 # Custom Value 
+numBinsCustom = 150                  # Custom Value 
 numBinsMedium = 500                 # Medium Bin 
 numBinsLarge = 800                  # Large Bin 
 # Edit this to change the Bin count without having to go through every line and change it.
-tBins = numBinsMedium
+tBins = numBinsCustom
 # Edit this to change the number of particles coded into the .yaml file.
 n_particles= 1000000
 dirnameOriginal = dirname + '/Original/'    # directory pointing to the Original file location, 'xta/imageAnalysis/Original/'
@@ -85,10 +85,10 @@ for x in fileNames:
     #40cm-------------------------------------------------------------------------------------------------------
     height = 7.68                                           # Height in inches
     aspect = 1                                              # height/width ratio
-    width = height*aspect
+    width = height * aspect
 
     plt.figure(figsize = (width, height))
-    figg=plt.hist2d(pltx, plty, bins = tBins)                # Change bins here if needed
+    figg=plt.hist2d(pltx, plty, bins = (tBins))                # Change bins here if needed
 
     plt.subplots_adjust(bottom=0, top=1, left=0, right=1)
   
