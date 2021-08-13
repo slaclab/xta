@@ -11,7 +11,7 @@ from numpy import asarray
 # Get the parent directory
 dirname = os.path.dirname(__file__)
 # List the images the program can compare
-testList = ['png.1-20.png', 'png.1-21.png', 'jfif.slacerman.jfif','jpg.blackhole.jpg','png.slac.png','jpeg.seaturtle.jpeg','tiff.lab.tiff','png.test.png']
+testList = ['jfif.slacerman.jfif','jpg.blackhole.jpg','png.slac.png','jpeg.seaturtle.jpeg','tiff.lab.tiff','png.test.png']
 # Which two images would you like to compare?
 testData = [ 0, 1 ]
 tDPath = 'testData' + str(testData[0]) + str(testData[1])
@@ -113,7 +113,6 @@ fName = filename[:fLen-9]
 # Open the images
 img1 = Image.open(dirname + '/Original/' + testList[testData[0]] ).convert('RGBA').resize((768,768))
 img2 = Image.open(dirname + '/Original/' + testList[testData[1]] ).convert('RGBA').resize((768,768))
-print("test")
 # Perform a series of tests on the images
 # TEST1:ADD------------------------------------------------------------------------------------------------------------------------------------------
 if btest1 == True:
