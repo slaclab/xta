@@ -1,0 +1,41 @@
+n_particle: 10000 
+random_type: hammersley
+
+start:
+  type: cathode
+  MTE:
+    units: meV
+    value: 500 
+    
+total_charge:
+  units: pC
+  value: 100
+
+xy_dist:
+  file: laser_image.txt
+  type: file2d
+  min_x: 
+    value: -1.5
+    units: mm
+  max_x:
+    value: 2
+    units: mm
+  min_y: 
+    value: -2
+    units: mm
+  max_y:
+    value: 1
+    units: mm
+  threshold: 0.0
+  #invert: True
+
+t_dist:
+  type: gaussian
+  avg_t:
+    units: ps
+    value: 0
+  sigma_t:
+    units: ps
+    value: 0.85
+  n_sigma_cutoff: 3
+  

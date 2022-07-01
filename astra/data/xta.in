@@ -1,0 +1,112 @@
+&newrun
+head = 'X-Band injector 5.59 cell'
+run = 1 
+loop = False
+nloop = 0
+distribution = 'astra.particles'
+xoff = 0
+yoff = 0
+lmagnetized = False
+emits = True
+c_emits = True
+local_emit = True
+phases = True
+tracks = False
+refs = True
+tchecks = True
+cathodes = False
+binary = False
+high_res = False
+lmonitor = True
+track_all = True
+phase_scan = False
+l_rm_back = True
+auto_phase = True
+check_ref_part = False
+zstart = 0.0
+zstop = 5.5
+zemit = 200
+zphase = 2
+tr_emits = False
+screen(1) = 0.0001
+screen(2) = 0.65
+screen(3) = 1.7
+screen(4) = 1.9
+screen(5) = 5.449
+h_min = 1e-05
+h_max = 0.001
+/
+&scan
+lscan = False
+scan_para = 'maxB(1)'
+s_min = 0.54
+s_max = 0.555
+s_numb = 7
+fom(1) = 'bunch charge'
+fom(2) = 'hor. Emittance'
+fom(3) = 'hor. spot'
+fom(4) = 'mean energy'
+fom(5) = 'rms energy'
+fom(6) = 'length'
+/
+&charge
+loop = False
+lspch = False
+lspch3d = False
+nxf = 16
+nyf = 16
+nzf = 16
+cell_var = 2
+min_grid = 4e-07
+max_scale = 0.05
+/
+&aperture
+/
+&fem
+/
+&cavity
+loop = False
+lefield = True
+file_efield(1) = 'fieldmaps/map559.dat'
+nue(1) = 11.424
+maxe(1) = 200.01
+phi(1) = -10
+c_pos(1) = 0.0
+c_smooth(1) = 50
+file_efield(2) = 'fieldmaps/TWS_xband_linac.dat'
+nue(2) = 11.424
+maxe(2) = 130.001
+phi(2) = 0
+c_pos(2) = 1.0
+c_numb(2) = 105
+/
+&solenoid
+loop = False
+lbfield = True
+file_bfield(1) = 'fieldmaps/xband_solenoid.dat'
+maxb(1) = 0.57
+s_pos(1) = 0
+s_xoff(1) = 0
+s_yoff(1) = 0
+s_smooth(1) = 10
+/
+&quadrupole
+loop = False
+lquad = True
+q_length(1) = 0.2062
+q_k(1) = 4.0
+q_pos(1) = 2.41
+q_bore(1) = 0.0327
+q_length(2) = 0.2062
+q_k(2) = -2.3
+q_pos(2) = 2.84
+q_bore(2) = 0.0327
+q_length(3) = 0.2062
+q_k(3) = 4.0
+q_pos(3) = 3.68
+q_bore(3) = 0.0327
+q_length(4) = 0.2062
+q_k(4) = 0.0
+q_pos(4) = 3.6122
+q_bore(4) = 0.0327
+/
