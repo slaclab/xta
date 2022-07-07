@@ -26,7 +26,7 @@ xy_dist:
   max_y:
     value: 2
     units: mm
-  threshold: 0.0
+  threshold: .15
   #invert: True
 
 t_dist:
