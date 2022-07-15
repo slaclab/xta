@@ -9,7 +9,7 @@ start:
     
 total_charge:
   units: pC
-  value: 10
+  value: 100
 
 xy_dist:
   file: laser_image.txt
@@ -26,7 +26,7 @@ xy_dist:
   max_y:
     value: 2
     units: mm
-  threshold: .15
+  threshold: .26
   #invert: True
 
 t_dist:
