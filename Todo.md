@@ -8,7 +8,7 @@ scan_example.ipynb
 - plot.py saves plots/movie
 
 
-xta.py
+xta.py (class)
 
 - Load Laser Image
 - Scan directory creation/check
@@ -39,3 +39,11 @@ plots.py
 rotate.py
 
 - Returns rotated distribution particles
+
+cont_scan.py
+
+- continuous scan
+
+tools.py
+
+- image 
