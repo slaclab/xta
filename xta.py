@@ -78,15 +78,18 @@ class xta_sim:
             self.cont_scan(parameter, **kwargs)
         else:
             raise Exception('Invalid Simulation Type')
+        self.opt_val = self.outputs[0] #opt_val
+        self.min = self.outputs[1]
+        self.max = self.outputs[2]
 
     def single(self):
         self.astra.run()
 
     def scan(self, parameter, range, divisions):
-        return scan(self.astra, parameter, range, divisions).opt_val
+        self.outputs = scan(self.astra, parameter, range, divisions).outputs
 
     def cont_scan(self, parameter, range, divisions, precision):
-        return cont_scan(self.astra, parameter, range, divisions, precision)
+        self.outputs = cont_scan(self.astra, parameter, range, divisions, precision).outputs
 
 
     def archive(self, name):

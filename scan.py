@@ -15,7 +15,7 @@ class scan:
         self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis = self.defineAxes()
 
         self.scoreDict = {}
-        self.opt_val = self.scan()
+        self.outputs = self.scan()
 
     def defineAxes(self):
         axes = [-10, 10, -10, 10]
@@ -47,7 +47,7 @@ class scan:
         ncols, nrows = fig.canvas.get_width_height()
         finIm = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8).reshape(nrows, ncols, 3)
         plt.close()
-        
+
         subImg = subtractImg(initIm, finIm)
         return self.score(subImg)
 
@@ -76,15 +76,16 @@ class scan:
         return self.opt_val, self.min, self.max
 
 class cont_scan:
-    def __init__(self, astra, parameter, init_domain, divisions, precision):
+    def __init__(self, astra, parameter, init_domain, divisions, precision) -> None:
         self.astra = astra
         self.parameter = parameter
-        self.min, self.max = init_domain
+        self.range = init_domain
         self.divisions = divisions
         self.precision = precision
-        return self.cont_scan()
+        
+        self.outputs = self.cont_scan()
 
     def cont_scan(self):
         while round(self.min, self.precision) != round(self.max, self.precision):
-            self.opt_val, self.min, self.max = scan(self.astra, self.parameter, self.min, self.max, self.divisions, self.precision)
-        return self.opt_val
+            self.opt_val, self.min, self.max = scan(self.astra, self.parameter, range=self.range, divisions=self.divisions).outputs
+        return self.opt_val, self.min, self.max
