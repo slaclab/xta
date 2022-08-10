@@ -122,3 +122,34 @@ def dcm_crop(im_input):
     padImg = np.pad(crop, [(padx, padx), (pady, pady)], mode='constant')
     return padImg
 
+def rotate_particles(astra, frame):
+    init_part = astra.particles[0]
+    fin_part = astra.particles[frame]
+
+    #Picking a particle to track
+    particleIndex = len(init_part)//2
+    iPos = np.array([float(init_part[particleIndex].x), float(init_part[particleIndex].y)])
+    iMag = np.sqrt(iPos.dot(iPos))
+    fPos = np.array([float(fin_part[particleIndex].x), float(fin_part[particleIndex].y)])
+    fMag = np.sqrt(fPos.dot(fPos))
+    #This is negative since the rotation is clockwise
+    diffAngle = -np.arccos((np.dot(iPos, fPos))/(iMag*fMag))
+
+    #2d Rotation Matrix
+    R = np.array(((np.cos(diffAngle), -np.sin(diffAngle)), (np.sin(diffAngle), np.cos(diffAngle))))
+
+    #2d Array of x and y points
+    vect = np.vstack((fin_part.x*10**3, fin_part.y*10**3))
+
+    #Applying rotation
+    return R.dot(vect)
+
+def greyscale(image):
+    return np.dot(image[...,:3], [0.33, 0.33, 0.33])
+
+def subtractImg(initIm, finIm):
+    initGrey = initIm
+    finGrey = finIm
+    diff = np.absolute(initGrey-finGrey)
+    plt.imsave('test.jpg', diff)
+    return diff

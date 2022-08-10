@@ -9,6 +9,7 @@ import glob
 from tools import dcm_crop, laser_load, write_distgen_xy_dist
 import shutil
 from astra import Astra
+from scan import scan, cont_scan
 
 class xta_sim:
 
@@ -55,31 +56,39 @@ class xta_sim:
         self.dist.input['xy_dist']['file'] = dist_path
         self.dist.run()
 
-        self.particles = self.dist.particles 
-        self.particles.write_astra('astra-inputs/astra_particles.txt')
+        self.dist_particles = self.dist.particles 
+        self.dist_particles.write_astra('astra-inputs/astra_particles.txt')
 
         #Initialize Astra
         self.init_astra()
 
-        return self.particles, self.dist
+        return self.dist_particles, self.dist
 
     def init_astra(self):
         astra_file = 'astra-inputs/xta.in'
-        self.astra = Astra(initial_particles=self.particles, input_file=astra_file, verbose=False)
+        self.astra = Astra(initial_particles=self.dist_particles, input_file=astra_file, verbose=False)
+        self.astra_particles = self.astra.particles
 
-    def run(self, type, **kwargs):
+    def simulation(self, type = 'single', parameter = None, **kwargs):
         if type == 'single':
-            self.single_scan()
+            self.single()
+        elif type == 'scan':
+            self.scan(parameter, **kwargs)
         elif type == 'cont_scan':
-            self.cont_scan(kwargs)
+            self.cont_scan(parameter, **kwargs)
         else:
-            raise Exception('No simulation type given')
+            raise Exception('Invalid Simulation Type')
 
-    def single_scan(self):
+    def single(self):
         self.astra.run()
 
-    def cont_scan(parameter, verbose):
-        pass
+    def scan(self, parameter, range, divisions):
+        outputs = scan(self.astra, parameter, range, divisions)
+        return outputs[0]
+
+    def cont_scan(self, parameter, range, divisions, precision):
+        return cont_scan(self.astra, parameter, range, divisions, precision)
+
 
     def archive(self, name):
         path = os.path.join(self.sim_path, self.name, 'data', name)

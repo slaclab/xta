@@ -46,5 +46,5 @@ cont_scan.py
 
 Todo:
 plots
-scan
+scan figure out image limits automatically
 rotate
