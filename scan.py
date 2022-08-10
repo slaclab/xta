@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class scan:
-    def __init__(self, astra, parameter, range, divisions, precision = 2):
+    def __init__(self, astra, parameter, range, divisions, precision = 2) -> None:
         self.astra = astra
         self.parameter = parameter #list of xta.in parameter to be optimized
         self.min, self.max = range
@@ -16,16 +16,15 @@ class scan:
 
         self.scoreDict = {}
         self.opt_val = self.scan()
-        return self.opt_val
 
     def defineAxes(self):
         axes = [-10, 10, -10, 10]
         return axes
     
     #How the function scores the image
-    def score(img):
-        sumPixels = img.sum()
-        squareSum = np.square(img).sum()
+    def score(self, subImg):
+        sumPixels = subImg.sum()
+        #squareSum = np.square(subImg).sum()
         return sumPixels
 
     def run(self, parameter, val):
@@ -34,7 +33,7 @@ class scan:
         rotVect = rotate_particles(self.astra, -1)
         
         fig, ax = plt.subplots(figsize=(5, 5), frameon=False)
-        plt.hist2d(self.astra.particles[0].x, self.astra.particles[0].y, self.sub_bins, facecolor='blue', cmin=1)
+        plt.hist2d(self.astra.particles[0].x*10**3, self.astra.particles[0].y*10**3, self.sub_bins, facecolor='blue', cmin=1)
         ax.set(xlim=[self.left_xaxis, self.right_xaxis], ylim=[self.left_yaxis, self.right_yaxis])
         fig.canvas.draw()
         ncols, nrows = fig.canvas.get_width_height()
@@ -47,11 +46,9 @@ class scan:
         fig.canvas.draw()
         ncols, nrows = fig.canvas.get_width_height()
         finIm = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8).reshape(nrows, ncols, 3)
-        #fig.savefig(f'{data_path}/cont_scan/final_{image_name}.jpg', bbox_inches='tight', pad_inches=0)
-        #plt.imsave('test.jpg', finIm)
         plt.close()
+        
         subImg = subtractImg(initIm, finIm)
-        #subImg = plt.imread(f'{data_path}/cont_scan/diff_{image_name}.jpg')
         return self.score(subImg)
 
     def scan(self):
@@ -70,11 +67,10 @@ class scan:
                 if val > opt_val:
                     self.max = val
                     break
-                continue
             elif parameter_space[-1] == val:
-                raise ValueError('Upper limit is optimal limit, increase upper limit for proper scan!')
+                raise ValueError(f'Upper limit {val} is optimal limit, increase upper limit for proper scan!')
             self.min = opt_val
-            opt_val = val
+            self.opt_val = val
             opt_score = score
 
         return self.opt_val, self.min, self.max

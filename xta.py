@@ -83,8 +83,7 @@ class xta_sim:
         self.astra.run()
 
     def scan(self, parameter, range, divisions):
-        outputs = scan(self.astra, parameter, range, divisions)
-        return outputs[0]
+        return scan(self.astra, parameter, range, divisions).opt_val
 
     def cont_scan(self, parameter, range, divisions, precision):
         return cont_scan(self.astra, parameter, range, divisions, precision)

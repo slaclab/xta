@@ -148,8 +148,8 @@ def greyscale(image):
     return np.dot(image[...,:3], [0.33, 0.33, 0.33])
 
 def subtractImg(initIm, finIm):
-    initGrey = initIm
-    finGrey = finIm
+    initGrey = greyscale(initIm)
+    finGrey = greyscale(finIm)
     diff = np.absolute(initGrey-finGrey)
     plt.imsave('test.jpg', diff)
     return diff
