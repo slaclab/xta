@@ -44,6 +44,7 @@ cont_scan.py
 
 - continuous scan
 
-tools.py
-
-- image 
+Todo:
+plots
+scan
+rotate

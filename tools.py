@@ -1,9 +1,9 @@
 """
-Tools and Functions
+Tools for Parsing and Image Analysis
 """
 
 import os
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import shutil
@@ -92,47 +92,17 @@ y {widths[0]} {widths[0]/2}  [{resolution_units}]"""
 #Loads and returns reshaped laser image based on index
 def laser_load(vcc, index):
     mat = scipy.io.loadmat(vcc[index])
+
     #Scraping Name of File
     laser_name = str(mat['data'][0][0][0][0])
 
     #Image Reshaping
     arr = mat['data']
     dim = arr.shape[0]
-    #print(dim)
     xy = int(np.sqrt(dim))
     nrow = xy
     ncol = xy
     return arr.reshape(nrow, ncol)[0][0][1], xy, laser_name
-
-def sim_mkdir(init_dcm_path, sim_path, name):
-
-    #makes scan directory
-    os.mkdir(os.path.join(sim_path, name))
-    scan_path = os.path.join(sim_path, name)
-
-    #makes data and plots directory
-    global data_path, plots_path, image_name
-    image_name = name
-    data_path = os.path.join(scan_path, 'data')
-    plots_path = os.path.join(scan_path, 'plots')
-    
-    os.mkdir(data_path)
-    os.mkdir(plots_path)
-
-    #defining directories to add to data and plots
-    
-    #directories used b y functions
-    data_dirs = ['dcm_crop', 'cont_scan']
-    #plot directories
-    plots_dirs = ['animations', 'compare_dist',  'energy_dist', 'final_electron_dist', 'init_electron_dist', 'laser_images', 'compare_dist_rotated']
-    for dir in data_dirs:
-        os.mkdir(os.path.join(data_path, dir))
-    for dir in plots_dirs:
-        os.mkdir(os.path.join(plots_path, dir))
-
-    #copies .dcm to scan_path directory
-    shutil.copy2(init_dcm_path, scan_path)
-    return [data_path, plots_path]
 
 def dcm_crop(im_input):
     ds = dicom.dcmread(im_input)
@@ -150,7 +120,5 @@ def dcm_crop(im_input):
     padx = (height - crop.shape[0])//2
     pady = (width - crop.shape[1])//2
     padImg = np.pad(crop, [(padx, padx), (pady, pady)], mode='constant')
+    return padImg
 
-    save_path = f'{data_path}/dcm_crop/{image_name}.jpg'
-    plt.imsave(save_path, padImg)
-    return save_path
