@@ -48,8 +48,8 @@ class xta_sim:
     def generate_dist(self, laser_index):
         #Load laser image
         vcc = glob.glob(self.vcc_path)
-        self.IMAGE, xy, laser_name = laser_load(vcc, laser_index)
-        FOUT = write_distgen_xy_dist(f'astra-inputs/{laser_name}.txt', self.IMAGE, xy, resolution_units='um')
+        self.IMAGE, xy, self.laser_name = laser_load(vcc, laser_index)
+        FOUT = write_distgen_xy_dist(f'astra-inputs/{self.laser_name}.txt', self.IMAGE, xy, resolution_units='um')
 
         #Generates distribution
         dist_path = os.path.join(self.data_path, f'{self.name}.jpg')
@@ -73,9 +73,18 @@ class xta_sim:
 
     def init_plots(self):
         #Need automatic limit calculation here
+        plt.close('all')
         self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis = [-10, 10, -10, 10]
-        self.plot = plot(self.IMAGE, self.astra, self.plots_path)
-        self.movie = movie(self.astra, self.plots_path)
+        self.axes = [self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis]
+        self.num_bins = 42
+        self.plot = plot(self.IMAGE, self.laser_name, self.astra, self.plots_path, self.axes, self.num_bins)
+        
+    def movie(self):
+        animations_path = os.path.join(self.plots_path, 'animations')
+        if not os.path.exists(animations_path):
+            os.mkdir(animations_path)
+        
+        self.movie = movie(self.astra, animations_path, self.axes, self.num_bins, self.dist, self.name)
 
     def simulation(self, type = 'single', parameter = None, **kwargs):
         if type == 'single':
@@ -92,6 +101,7 @@ class xta_sim:
 
     def single(self):
         self.astra.run()
+        self.outputs = [None, None, None]
 
     def scan(self, parameter, range, divisions):
         self.outputs = scan(self.astra, parameter, range, divisions).outputs

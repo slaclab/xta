@@ -9,7 +9,7 @@ start:
     
 total_charge:
   units: pC
-  value: 100
+  value: 1
 
 xy_dist:
   file: laser_image.txt
