@@ -1,6 +1,6 @@
 plots.py
 
-- Energy Plots for custom
+- Energy Plots for custom plot
 
 Todo:
 single/compare kwargs
