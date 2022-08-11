@@ -48,8 +48,8 @@ class xta_sim:
     def generate_dist(self, laser_index):
         #Load laser image
         vcc = glob.glob(self.vcc_path)
-        IMAGE, xy, laser_name = laser_load(vcc, laser_index)
-        FOUT = write_distgen_xy_dist(f'astra-inputs/{laser_name}.txt', IMAGE, xy, resolution_units='um')
+        self.IMAGE, xy, laser_name = laser_load(vcc, laser_index)
+        FOUT = write_distgen_xy_dist(f'astra-inputs/{laser_name}.txt', self.IMAGE, xy, resolution_units='um')
 
         #Generates distribution
         dist_path = os.path.join(self.data_path, f'{self.name}.jpg')
@@ -62,6 +62,7 @@ class xta_sim:
 
         #Initialize Astra
         self.init_astra()
+        self.init_plots()
 
         return self.dist_particles, self.dist
 
@@ -73,6 +74,8 @@ class xta_sim:
     def init_plots(self):
         #Need automatic limit calculation here
         self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis = [-10, 10, -10, 10]
+        self.plot = plot(self.IMAGE, self.astra, self.plots_path)
+        self.movie = movie(self.astra, self.plots_path)
 
     def simulation(self, type = 'single', parameter = None, **kwargs):
         if type == 'single':
@@ -100,5 +103,5 @@ class xta_sim:
         path = os.path.join(self.sim_path, self.name, 'data', name)
         self.astra.archive(path)
 
-    def plot():
+    def save_plot(self, ):
         pass

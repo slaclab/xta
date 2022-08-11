@@ -1,23 +1,5 @@
-Todo:
-scan_example.ipynb
 
-- Choose dcm path, simulation path, astra path
-- Choose xta.in settings and .yaml settings
-- xta.py does one sim
-- scan.py does continuous scan
 - plot.py saves plots/movie
-
-
-xta.py (class)
-
-- Load Laser Image
-- Scan directory creation/check
-- Define paths
-- Write distgen file
-- Generate init Electron Distribution
-- Astra Cont Scan
-- .h5 file save
-
 
 plots.py
 
