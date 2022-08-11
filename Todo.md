@@ -1,13 +1,9 @@
 plots.py
 
-compare
-- Plot init vs. final
-- Plot init vs. rotated
-
-- Energy Plots
+- Energy Plots for custom
 
 Todo:
-kwargs, directory checks, title parameter
+single/compare kwargs
 
 scan.py
 auto image limits
