@@ -11,3 +11,6 @@ kwargs, directory checks, title parameter
 
 scan.py
 auto image limits
+
+xta
+move .py to an xta folder
