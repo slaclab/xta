@@ -151,5 +151,4 @@ def subtractImg(initIm, finIm):
     initGrey = greyscale(initIm)
     finGrey = greyscale(finIm)
     diff = np.absolute(initGrey-finGrey)
-    plt.imsave('test.jpg', diff)
     return diff

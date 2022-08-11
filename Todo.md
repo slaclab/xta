@@ -35,16 +35,6 @@ plots.py
 - Boiler Plates
 - Compare Dual Graph
 
-
-rotate.py
-
-- Returns rotated distribution particles
-
-cont_scan.py
-
-- continuous scan
-
 Todo:
 plots
 scan figure out image limits automatically
-rotate

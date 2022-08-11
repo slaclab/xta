@@ -10,6 +10,7 @@ from tools import dcm_crop, laser_load, write_distgen_xy_dist
 import shutil
 from astra import Astra
 from scan import scan, cont_scan
+from plot import *
 
 class xta_sim:
 
@@ -69,6 +70,10 @@ class xta_sim:
         self.astra = Astra(initial_particles=self.dist_particles, input_file=astra_file, verbose=False)
         self.astra_particles = self.astra.particles
 
+    def init_plots(self):
+        #Need automatic limit calculation here
+        self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis = [-10, 10, -10, 10]
+
     def simulation(self, type = 'single', parameter = None, **kwargs):
         if type == 'single':
             self.single()
@@ -90,7 +95,6 @@ class xta_sim:
 
     def cont_scan(self, parameter, range, divisions, precision):
         self.outputs = cont_scan(self.astra, parameter, range, divisions, precision).outputs
-
 
     def archive(self, name):
         path = os.path.join(self.sim_path, self.name, 'data', name)
