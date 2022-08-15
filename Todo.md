@@ -1,7 +1,3 @@
-plots.py
-
-- Energy Plots for custom plot
-
 Todo:
 single/compare kwargs
 
@@ -10,3 +6,5 @@ auto image limits
 
 xta
 move .py to an xta folder
+
+README.md

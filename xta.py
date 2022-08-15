@@ -11,6 +11,7 @@ import shutil
 from astra import Astra
 from scan import scan, cont_scan
 from plot import *
+from movie import movie
 
 class xta_sim:
 
@@ -74,17 +75,43 @@ class xta_sim:
     def init_plots(self):
         #Need automatic limit calculation here
         plt.close('all')
-        self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis = [-10, 10, -10, 10]
-        self.axes = [self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis]
-        self.num_bins = 42
-        self.plot = plot(self.IMAGE, self.laser_name, self.astra, self.plots_path, self.axes, self.num_bins)
+        self.axes = {
+            'left_xaxis': -10,
+            'right_xaxis': 10, 
+            'left_yaxis': -10, 
+            'right_yaxis': 10
+        }
+
+        #Is this necessary?
+        #self.left_xaxis, self.right_xaxis, self.left_yaxis, self.right_yaxis = self.axes.values()
         
-    def movie(self):
+        self.num_bins = 42
+        self.data = {
+            'name': self.name,
+            'laser_IMAGE': self.IMAGE, 
+            'laser_name': self.laser_name,
+            'dist': self.dist,
+            'astra': self.astra,
+            'plots_path': self.plots_path,
+            'axes': self.axes,
+            'num_bins': self.num_bins
+            }
+
+    def plot(self, type, **kwargs):
+        from plot import plotTypes
+        if type in plotTypes.keys():
+            plotTypes[type](self.data, **kwargs)
+        elif type == 'all':
+            for type in plotTypes.keys():
+                plotTypes[type](self.data, **kwargs)
+        else:
+            raise ValueError(f'Invalid Plot Type: {type}')
+
+    def movie(self, **kwargs):
         animations_path = os.path.join(self.plots_path, 'animations')
         if not os.path.exists(animations_path):
             os.mkdir(animations_path)
-        
-        self.movie = movie(self.astra, animations_path, self.axes, self.num_bins, self.dist, self.name)
+        movie(self.data, **kwargs)
 
     def simulation(self, type = 'single', parameter = None, **kwargs):
         if type == 'single':
