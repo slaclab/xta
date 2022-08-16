@@ -37,16 +37,13 @@ def movie(data, **kwargs):
         im.set_data(pix)
         im.set_extent([x[0], x[-1], y[0], y[-1]])
     
-    def run():
-        num = len(data['astra'].particles)
-        playback_speed = 6 #In fps
-        anim = animation.FuncAnimation(fig, animate, np.arange(1,num), repeat_delay = 2500, repeat = False)
+    num = len(data['astra'].particles)
+    playback_speed = 6 #In fps
+    anim = animation.FuncAnimation(fig, animate, np.arange(1,num), repeat_delay = 2500, repeat = False)
 
-        #Save animation
-        writervideo = animation.FFMpegWriter(fps=playback_speed)
-        savepath = os.path.join(data['plots_path'], 'animations', data['name']+'.mp4')
-        anim.save(savepath, writer=writervideo)
-        plt.close()
-    
-    run()
+    #Save animation
+    writervideo = animation.FFMpegWriter(fps=playback_speed)
+    savepath = os.path.join(data['plots_path'], 'animations', data['name']+'.mp4')
+    anim.save(savepath, writer=writervideo)
+    plt.close()
     
