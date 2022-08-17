@@ -130,8 +130,8 @@ class xta_sim:
         self.astra.run()
         self.outputs = [None, None, None]
 
-    def scan(self, parameter, range, divisions):
-        self.outputs = scan(self.astra, parameter, range, divisions).outputs
+    def scan(self, parameter, interval, divisions):
+        self.outputs = scan(self.astra, parameter, interval, divisions).outputs
 
     def cont_scan(self, parameter, range, divisions, precision):
         self.outputs = cont_scan(self.astra, parameter, range, divisions, precision).outputs

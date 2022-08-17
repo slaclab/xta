@@ -4,10 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class scan:
-    def __init__(self, astra, parameter, range, divisions) -> None:
+    def __init__(self, astra, parameter, interval, divisions) -> None:
         self.astra = astra
         self.parameter = parameter #list of xta.in parameter to be optimized
-        self.min, self.max = range
+        self.min, self.max = interval
         self.divisions = divisions
 
         self.sub_bins = 42 #number of bins for image subtraction
