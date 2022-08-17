@@ -1,7 +1,7 @@
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-from tools import rotate_particles
+from xta.tools import rotate_particles
 import matplotlib.animation as animation
 from statistics import mean
 

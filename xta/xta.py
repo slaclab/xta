@@ -6,12 +6,12 @@ import os
 import matplotlib.pyplot as plt
 from distgen import Generator
 import glob
-from tools import dcm_crop, laser_load, write_distgen_xy_dist
+from xta.tools import dcm_crop, laser_load, write_distgen_xy_dist
 import shutil
 from astra import Astra
-from scan import scan, cont_scan
-from plot import *
-from movie import movie
+from xta.scan import scan, cont_scan
+from xta.plot import *
+from xta.movie import movie
 
 class xta_sim:
 
@@ -98,7 +98,7 @@ class xta_sim:
             }
 
     def plot(self, type, **kwargs):
-        from plot import plotTypes
+        from xta.plot import plotTypes
         if type in plotTypes.keys():
             plotTypes[type](self.data, **kwargs)
         elif type == 'all':
