@@ -43,14 +43,14 @@ class xta_sim:
             shutil.copy2(self.init_dcm_path, self.data_path)
 
     def init_dist(self):
-        dist_file = 'astra-inputs/distgen.yaml'
+        dist_file = 'xta/astra-inputs/distgen.yaml'
         self.dist = Generator(dist_file, verbose=False)
 
     def generate_dist(self, laser_index):
         #Load laser image
         vcc = glob.glob(self.vcc_path)
         self.IMAGE, xy, self.laser_name = laser_load(vcc, laser_index)
-        FOUT = write_distgen_xy_dist(f'astra-inputs/{self.laser_name}.txt', self.IMAGE, xy, resolution_units='um')
+        FOUT = write_distgen_xy_dist(f'xta/astra-inputs/{self.laser_name}.txt', self.IMAGE, xy, resolution_units='um')
 
         #Generates distribution
         dist_path = os.path.join(self.data_path, f'{self.name}.jpg')
@@ -59,7 +59,7 @@ class xta_sim:
         self.dist.run()
 
         self.dist_particles = self.dist.particles 
-        self.dist_particles.write_astra('astra-inputs/astra_particles.txt')
+        self.dist_particles.write_astra('xta/astra-inputs/astra_particles.txt')
 
         #Initialize Astra
         self.init_astra()
@@ -68,7 +68,7 @@ class xta_sim:
         return self.dist_particles, self.dist
 
     def init_astra(self):
-        astra_file = 'astra-inputs/xta.in'
+        astra_file = 'xta/astra-inputs/xta.in'
         self.astra = Astra(initial_particles=self.dist_particles, input_file=astra_file, verbose=False)
         self.astra_particles = self.astra.particles
 

@@ -87,5 +87,5 @@ class cont_scan:
 
     def cont_scan(self):
         while round(self.min, self.precision) != round(self.max, self.precision):
-            self.opt_val, self.min, self.max = scan(self.astra, self.parameter, range=[self.min, self.max], divisions=self.divisions).outputs
+            self.opt_val, self.min, self.max = scan(self.astra, self.parameter, interval=[self.min, self.max], divisions=self.divisions).outputs
         return self.opt_val, self.min, self.max
