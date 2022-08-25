@@ -10,7 +10,6 @@ save = True
 close = False
 
 def save_plot(filename):
-    
     plt.savefig(filename, dpi=300, bbox_inches='tight')
 
 def laser_image(data, **kwargs):
@@ -20,7 +19,7 @@ def laser_image(data, **kwargs):
     plt.xlabel('Pixel')
     plt.ylabel('Pixel')
     if save:
-        savepath = os.path.join(data['plots_path'], 'laser_images', data['laser_name']+'.jpg')
+        savepath = os.path.join(data['plots_path'], data['laser_name']+'.jpg')
         save_plot(savepath)
     if close:
         plt.close()
@@ -34,7 +33,7 @@ def initial_dist(data, **kwargs):
     plt.xlim(data['axes']['left_xaxis'], data['axes']['right_xaxis'])
     plt.ylim(data['axes']['left_yaxis'], data['axes']['right_yaxis'])
     if save:
-        savepath = os.path.join(data['plots_path'], 'laser_images', 'initial_dist.jpg')
+        savepath = os.path.join(data['plots_path'], 'initial_dist.jpg')
         save_plot(savepath)
     if close:
         plt.close()
@@ -48,7 +47,7 @@ def final_dist(data, **kwargs):
     plt.xlim([data['axes']['left_xaxis'], data['axes']['right_xaxis']])
     plt.ylim([data['axes']['left_yaxis'], data['axes']['right_yaxis']])
     if save:
-        savepath = os.path.join(data['plots_path'], 'laser_images', 'final_dist.jpg')
+        savepath = os.path.join(data['plots_path'], 'final_dist.jpg')
         save_plot(savepath)
     if close:
         plt.close()
@@ -64,7 +63,7 @@ def rotated_final_dist(data, **kwargs):
     plt.xlim([data['axes']['left_xaxis'], data['axes']['right_xaxis']])
     plt.ylim([data['axes']['left_yaxis'], data['axes']['right_yaxis']])
     if save:
-        savepath = os.path.join(data['plots_path'], 'laser_images', 'rotated_final_dist.jpg')
+        savepath = os.path.join(data['plots_path'], 'rotated_final_dist.jpg')
         save_plot(savepath)
     if close:
         plt.close()
@@ -87,7 +86,7 @@ def initial_vs_final(data, title='', **kwargs):
     plt.suptitle(title)
 
     if save:
-        savepath = os.path.join(data['plots_path'], 'laser_images', 'initial_vs_final.jpg')
+        savepath = os.path.join(data['plots_path'], 'initial_vs_final.jpg')
         save_plot(savepath)
     if close:
         plt.close()
@@ -112,7 +111,7 @@ def initial_vs_rotated(data, title='', **kwargs):
     plt.suptitle(title)
 
     if save:
-        savepath = os.path.join(data['plots_path'], 'laser_images', 'initial_vs_rotated.jpg')
+        savepath = os.path.join(data['plots_path'],  'initial_vs_rotated.jpg')
         save_plot(savepath)
     if close:
         plt.close()
