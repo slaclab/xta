@@ -5,10 +5,12 @@ Simulations for xta beam line in TID
 
 ## xta_sim
 
-### .generate_dist()
+### .generate_dist(index)
 
-### .simulation
-This method runs a simulation with the current xta_sim configuration. A simulation type is passed as an argument.
+This method generates the initial electron distribution based on the laser image and the tumor image using distgen. The index argument indicates which laser image to choose from library.
+
+### .simulation(type)
+This method runs a simulation with the current xta_sim configuration. A simulation type is passed as an argument; simulation arguments are also passed based on the simulation type.
 
 #### Types of Simulations:
 'single': runs one simulation
@@ -35,3 +37,13 @@ The save arguement is responsible for saving the plot to the plots folder in the
 
 ### .movie
 This method generates a movie of the entire simulation. The .mp4 is saved to the animations directory.
+
+## Todo
+
+### Automatic Plot Axes
+Currently the plot axes must be configured manually in xta.py, automatic axes calculations need to be developed.
+
+### Plot Kwargs
+Need to configure xta.py and plot.py to allow for matplotlib kwargs to be passed for  all plot types.
+
+###
