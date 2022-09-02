@@ -37,10 +37,10 @@ This method runs a simulation with the current xta_sim configuration. A simulati
 'scan': optimizes a simulation input by running a single scan over a linear space with a defined interval and discrete divisions. Required arguments: optimization parameter, interval, divisions.
 'cont_scan': runs single scans until parameter is optimized to a specified decimal precision. Required arguments: optimization parameter, interval, divisions, precision.
 
-### .plot
+### .plot(type, **kwargs)
 This method is responsible for generating the prebuilt plot types.
 
-#### Keyword Arguments
+#### Keyword Arguments for .plot
 The save arguement is responsible for saving the plot to the plots folder in the simulation. The close argument is responsible for closing the plot. Normal keyword arguments from matplotlib can be passed for single plot types.
 
 ### Types of Prebuilt Plots:
