@@ -3,7 +3,27 @@ Simulations for xta beam line in TID
 
 ## Path definitions
 
+Before any simulations can be run, environment path variables for astra must be defined. To set up a simulation, four directory paths must be defined: xta_path, sim_path, init_dcm_path, and vcc_path.
+
+### xta_path
+
+This is the path of the xta repository on the local machine.
+
+### sim_path
+
+The simulations directory where all data will be saved.
+
+### init_dcm_path
+
+The path of the .dcm file to be loaded into the simulation.
+
+### vcc_path
+
+The directory containing the example vcc laser images.
+
 ## xta_sim
+
+The xta_sim object contains all the necessary functions and methods to configure/run simulations and save/plot the data. The following methods are defined:
 
 ### .generate_dist(index)
 
@@ -45,5 +65,3 @@ Currently the plot axes must be configured manually in xta.py, automatic axes ca
 
 ### Plot Kwargs
 Need to configure xta.py and plot.py to allow for matplotlib kwargs to be passed for  all plot types.
-
-###
