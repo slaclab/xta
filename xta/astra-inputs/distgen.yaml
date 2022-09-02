@@ -9,7 +9,7 @@ start:
     
 total_charge:
   units: pC
-  value: 100
+  value: 1
 
 xy_dist:
   file: laser_image.txt
@@ -38,4 +38,3 @@ t_dist:
     units: ps
     value: 32.87
   n_sigma_cutoff: 3
-  
