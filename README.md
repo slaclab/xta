@@ -43,15 +43,15 @@ This method is responsible for generating the prebuilt plot types.
 #### Keyword Arguments
 The save arguement is responsible for saving the plot to the plots folder in the simulation. The close argument is responsible for closing the plot. Normal keyword arguments from matplotlib can be passed for single plot types.
 
-#### Types of Prebuilt Plots:
+### Types of Prebuilt Plots:
 
-##### Single Plots:
+#### Single Plots:
 'laser_image': the laser image
 'initial_dist': the initial electron distribution
 'final_dist': the final electron distribution
 'rotated_final_dist': the final electron distribution with the rotation correction
 
-##### Compare Plots:
+#### Compare Plots:
 'initial_vs_final': initial vs final electron distributions
 'initial_vs_rotated': initial vs final electron distributions with final rotation correction
 
